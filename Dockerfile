@@ -2,7 +2,6 @@ FROM nginx:alpine
 
 LABEL maintainer="quoaum@gmail.com"
 
-ARG PAGEKIT_VERSION=1.0.16
 ENV INITSYSTEM=on
 
 RUN apk --no-cache update && \
