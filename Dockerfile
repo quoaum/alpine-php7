@@ -41,12 +41,6 @@ RUN apk --no-cache update && \
     php7-cli \
     php7-simplexml
 
-# clean temporary
-#RUN apk del \
-#    autoremove \
-#    wget \
-#    unzip || true
-
 RUN rm -rf \
     /var/cache/apk/* \
     /tmp/* \
@@ -64,7 +58,8 @@ COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf    
 
 ### WWW resources
-COPY www /www
+RUN mkdir -p /www
+ADD www/index.php /www/index.php
 
 # Create a group and user
 RUN adduser -D -g 'www' www
