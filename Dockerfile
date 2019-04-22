@@ -72,13 +72,17 @@ RUN adduser -D -g 'www' www
 # create working directory
 WORKDIR /www
 
+# temporary
+RUN mkdir -p /tmp
+
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R www:www /run && \    
     chown -R www:www /var/lib/nginx && \
     chown -R www:www /var/tmp/nginx && \
     chown -R www:www /var/log/nginx && \
     chown -R www:www /var/lib/nginx/logs && \
-    chown -R www:www /www
+    chown -R www:www /www  && \
+    chown -R www:www /tmp
 
 # Executable
 COPY config/start.sh /usr/bin/start
