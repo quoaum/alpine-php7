@@ -57,14 +57,11 @@ COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf    
 
-### WWW resources
-RUN mkdir -p /www
-ADD www/index.php /www/index.php
-
 # Create a group and user
 RUN adduser -D -g 'www' www
 
 # create working directory
+RUN mkdir -p /www
 WORKDIR /www
 
 # temporary
