@@ -42,10 +42,10 @@ RUN apk --no-cache update && \
     php7-simplexml
 
 # clean temporary
-RUN apk del \
-    autoremove \
-    wget \
-    unzip || true
+#RUN apk del \
+#    autoremove \
+#    wget \
+#    unzip || true
 
 RUN rm -rf \
     /var/cache/apk/* \
