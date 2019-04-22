@@ -61,8 +61,7 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN adduser -D -g 'www' www
 
 # create working directory
-RUN mkdir -p /www
-WORKDIR /www
+WORKDIR /var/www
 
 # temporary
 RUN mkdir -p /tmp
@@ -73,7 +72,7 @@ RUN chown -R www:www /run && \
     chown -R www:www /var/tmp/nginx && \
     chown -R www:www /var/log/nginx && \
     chown -R www:www /var/lib/nginx/logs && \
-    chown -R www:www /www  && \
+    chown -R www:www /var/www && \
     chown -R www:www /tmp
 
 # Executable
@@ -85,8 +84,6 @@ RUN chmod 777 /usr/bin/start
 USER www
 
 EXPOSE 8080
-
-VOLUME ["/www"]
 
 ENTRYPOINT [ "/bin/sh" ]
 CMD ["/usr/bin/start"]
